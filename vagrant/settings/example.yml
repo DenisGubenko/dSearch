@@ -1,0 +1,26 @@
+# Guest OS timezone
+timezone: Europe/Zaporozhye
+
+# Virtual machine name
+machine_name: dSearch
+
+# Virtual machine IP
+ip: 192.168.77.99
+
+# Virtual machine CPU cores number
+cpus: 1
+
+# Virtual machine RAM
+memory: 2048
+
+# Virtual machine hostname
+hostname: "dsearch.int"
+
+domains: {
+  www: "www.dsearch.int",
+}
+
+
+# Bootstrap section
+installJava8: true
+installNeo4j: true
