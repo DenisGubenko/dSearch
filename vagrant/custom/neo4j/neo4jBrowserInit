@@ -1,0 +1,2 @@
+cd /home/dsearch/neo4j
+sudo yarn start > /dev/null 2>&1

@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.hostname = options["hostname"]
     config.vm.network "private_network", ip: options["ip"]
     config.vm.synced_folder ".", "/home/dsearch", owner: "www-data", group: "www-data"
-    config.vm.network "forwarded_port", guest: 80, host: 80
+    config.vm.network "forwarded_port", guest: 7687, host: 7687
     config.vm.provision :hostmanager
 
     config.hostmanager.enabled            = true
@@ -53,17 +53,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   
     config.vm.provision:shell, :path => "vagrant/provision/bootstrap.sh", env: {
+        :INSTALL_NODEJS => options["installNodeJs"],
         :INSTALL_JAVA8 => options["installJava8"],
-        :INSTALL_NEO4J => options["installNeo4j"]
+        :INSTALL_NEO4J => options["installNeo4j"],
+        :INSTALL_NGINX => options["installNginx"]
     }
 
     config.vm.provision:shell, :path => "vagrant/provision/always-as-root.sh", run: "always", env: {
+        :INSTALL_NODEJS => options["installNodeJs"],
         :INSTALL_JAVA8 => options["installJava8"],
-        :INSTALL_NEO4J => options["installNeo4j"]
+        :INSTALL_NEO4J => options["installNeo4j"],
+        :INSTALL_NGINX => options["installNginx"]
     }
     config.vm.provision:shell, :path => "vagrant/provision/always-as-vagrant.sh", run: "always", privileged: false, env: {
+        :INSTALL_NODEJS => options["installNodeJs"],
         :INSTALL_JAVA8 => options["installJava8"],
-        :INSTALL_NEO4J => options["installNeo4j"]
+        :INSTALL_NEO4J => options["installNeo4j"],
+        :INSTALL_NGINX => options["installNginx"]
     }
 
     config.vm.post_up_message = "successfull boot ! welcome."

@@ -17,10 +17,11 @@ memory: 2048
 hostname: "dsearch.int"
 
 domains: {
-  www: "www.dsearch.int",
+  "www": "www.dsearch.int",
+  "neo4j": "neo4j.dsearch.int"
 }
 
-
 # Bootstrap section
+installNodeJs: true
 installJava8: true
 installNeo4j: true

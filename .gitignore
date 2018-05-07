@@ -40,3 +40,4 @@ phpunit.phar
 /.vagrant
 
 *.log
+/neo4j
